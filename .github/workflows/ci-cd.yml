@@ -5,8 +5,24 @@ on:
     branches: [ "main" ]
 
 jobs:
-  hello-world:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Say Hello
-        run: echo "CI/CD pipeline running!"
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4          # ← checks out your repo
+
+      - name: 🛠️ Set up .NET SDK
+        uses: actions/setup-dotnet@v4      # ← installs .NET SDK
+        with:
+          dotnet-version: "8.0.x"          # pick the version you need
+
+      - name: 🔍 Restore dependencies
+        run: dotnet restore SchoolErp-mew/SchoolErp-mew.csproj
+        # ^ adjust the path to your .csproj if different
+
+      - name: 🏗️ Build project
+        run: dotnet build --configuration Release --no-restore SchoolErp-mew/SchoolErp-mew.csproj
+
+      - name: ✅ Run unit tests
+        run: dotnet test --no-restore --verbosity normal
