@@ -1,0 +1,162 @@
+﻿@model IEnumerable<SchoolErp.Models.Admin.Sections>
+@{
+    ViewBag.Title = "Sections";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<div class="page-wrapper">
+	<style>
+        .pagination {
+            display: inline-block;
+        }
+
+            .pagination a {
+                color: black;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+            }
+
+                .pagination a.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+
+                .pagination a:hover:not(.active) {
+                    background-color: #ddd;
+                }
+    </style>
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Sections</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Sections</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title m-b-0"><i class="fas fa-chalkboard"></i> Sections</h5>
+                    </div>
+
+                    <div class="row">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <a href="@Url.Action("CreateSections","Settings")" class="btn btn btn-dark">
+                                            <i class="fas fa-plus-square"></i>
+                                            <span>
+                                                <strong>Create</strong>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SectionID)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SectionName)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SectionID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SectionName)
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("EditSections","Settings", new { id = item.SectionID})" class="btn btn-mini btn-outkine-orange icon-edit bigger-10"><img src="~/assets/48763_file_edit_icon.png" /></a>
+                                            <a onclick="Delete(@item.SectionID)" class="btn btn-mini btn-outkine-orange icon-edit bigger-10"><img src="~/assets/616650_bin_delete_garbage_trash_icon.png" /></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+							@{
+                                double totalPages = ViewBag.TotalPages;
+
+                                <ul class="pagination">
+                                    @if (ViewBag.PageNumber == 1)
+                                    {
+                                        <li class="active" style="float:left">
+                                            @Html.ActionLink("Previous", "Sections", new { PageNumber = ViewBag.PageNumber })
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="active" style="float:left">
+                                            @Html.ActionLink("Previous", "Sections", new { PageNumber = ViewBag.PageNumber - 1 })
+                                        </li>
+                                    }
+                                    @for (int i = 1; i <= totalPages; i++)
+                                    {
+                                        if (i == ViewBag.PageNumber)
+                                        {
+                                            <li class="active" style="float:left">
+                                                @Html.ActionLink(i.ToString(), "Sections", new { PageNumber = i })
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="active" style="float:left">
+                                                @Html.ActionLink(i.ToString(), "Sections", new { PageNumber = i })
+                                            </li>
+                                        }
+                                    }
+                                    @if (ViewBag.PageNumber == totalPages)
+                                    {
+                                        <li class="active" style="float:left">
+                                            @Html.ActionLink("Next", "Sections", new { PageNumber = ViewBag.PageNumber })
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="active" style="float:left">
+                                            @Html.ActionLink("Next", "Sections", new { PageNumber = ViewBag.PageNumber + 1 })
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+        function Delete(id) {
+            alertify.confirm('Matrix International School','Are you sure?',function(){
+                window.location.href  = '@Url.Action("DeleteSections", "Settings")/'+id;
+            },null );
+        }
+    </script>
+
+}}

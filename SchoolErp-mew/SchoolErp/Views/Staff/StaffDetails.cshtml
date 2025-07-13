@@ -1,0 +1,126 @@
+﻿@model SchoolErp.Models.Admin.Staff
+
+@{
+    ViewBag.Title = "StaffDetails";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<h2>StaffDetails</h2>
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">View Staff Details</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> Staff</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title m-b-0"><i class="fas fa-users"></i> Staff</h5>
+                    </div>
+                    <div class="row">
+                        <div class=" card-body">
+                            <div>
+                                <h5>Staff Details</h5>
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Staffname)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Staffname)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Designation)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Designation)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Gender)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Gender)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Phone1)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Phone1)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.phone2)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.phone2)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Email)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Email)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.DateOfAppointment)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.DateOfAppointment)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Nationality)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Nationality)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.YOE)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.YOE)
+                                    </dd>
+
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.previouseOrg)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.previouseOrg)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.AccountStatus)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.AccountStatus)
+                                    </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.StaffAddress)
+                                    </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.StaffAddress)
+                                    </dd>
+                                    
+                                </dl>
+                                <p>
+                                    
+                                    @Html.ActionLink("Back to List", "Staff")
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

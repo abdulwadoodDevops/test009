@@ -1,0 +1,196 @@
+﻿@model IEnumerable<SchoolErp.Models.Admin.ClassLevel>
+
+@{
+    ViewBag.Title = "TimeTableClassLevel";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+<div class="page-wrapper">
+	<style>
+        .pagination {
+            display: inline-block;
+        }
+
+            .pagination a {
+                color: black;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+            }
+
+                .pagination a.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+
+                .pagination a:hover:not(.active) {
+                    background-color: #ddd;
+                }
+    </style>
+    <div class="page-breadcrumb">
+
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Class Time Table</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> Class Time Table</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title m-b-0"><i class="fas fa-user-clock"></i> Class Time Table</h5>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <a href="@Url.Action("CreateClassLevel","Settings")" class="btn btn btn-dark">
+                                            <i class="fas fa-plus-square"></i>
+                                            <span>
+                                                <strong>Create</strong>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+										<th>
+                                                #
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.LevelID)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Levelname)
+                                        </th>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Section)
+                                        </th>
+                                        <th>
+                                            <label>Action</label>
+                                        </th>
+                                    </tr>
+                                </thead>
+								 @{
+										int counter = 1;
+                                  }
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+										<td>
+											@counter
+										</td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LevelID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Levelname)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Section)
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("CreateTimeTable","Settings", new { id = item.LevelID})" class="btn btn-mini btn-outkine-orange icon-edit bigger-10"><img src="~/assets/48810_user_add_icon.png" /></a>
+                                            <a href="@Url.Action("ViewTimeTable","Settings", new { id = item.LevelID})" class="btn btn-mini btn-outkine-orange icon-edit bigger-10"><img src="~/assets/1055031_magnifying_search_view_icon.png" /></a>
+                                            
+                                        </td>
+                                    </tr>
+									counter++;
+                                }
+
+                            </table>
+							 @{
+                                double totalPages = ViewBag.TotalPages;
+
+                                <ul class="pagination">
+                                    @if (ViewBag.PageNumber == 1)
+                                    {
+                                        <li class="active" style="float:left">
+                                            @Html.ActionLink("Previous", "TimeTableClassLevel", new { PageNumber = ViewBag.PageNumber })
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="active" style="float:left">
+                                            @Html.ActionLink("Previous", "TimeTableClassLevel", new { PageNumber = ViewBag.PageNumber - 1 })
+                                        </li>
+                                    }
+                                    @for (int i = 1; i <= totalPages; i++)
+                                    {
+                                        if (i == ViewBag.PageNumber)
+                                        {
+                                            <li class="active" style="float:left">
+                                                @Html.ActionLink(i.ToString(), "TimeTableClassLevel", new { PageNumber = i })
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="active" style="float:left">
+                                                @Html.ActionLink(i.ToString(), "TimeTableClassLevel", new { PageNumber = i })
+                                            </li>
+                                        }
+                                    }
+                                    @if (ViewBag.PageNumber == totalPages)
+                                    {
+                                        <li class="active" style="float:left">
+                                            @Html.ActionLink("Next", "TimeTableClassLevel", new { PageNumber = ViewBag.PageNumber })
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="active" style="float:left">
+                                            @Html.ActionLink("Next", "TimeTableClassLevel", new { PageNumber = ViewBag.PageNumber + 1 })
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+        @*function Delete(id) {
+            alertify.confirm('Web Api CRUD Operations','Are You Sure to Delete this Record ?',function(){
+                window.location.href  = '@Url.Action("Delete","Employee")/'+id;
+            },null );
+        }*@
+    </script>
+
+
+}

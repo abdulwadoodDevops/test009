@@ -1,0 +1,266 @@
+﻿@model IEnumerable<SchoolErp.Models.Admin.Student>
+
+@{
+    ViewBag.Title = "Student";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+
+    <style>
+        .pagination {
+            display: inline-block;
+        }
+
+            .pagination a {
+                color: black;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+            }
+
+                .pagination a.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+
+                .pagination a:hover:not(.active) {
+                    background-color: #ddd;
+                }
+    </style>
+
+    <div class="page-breadcrumb">
+
+
+
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Dashboard</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> Dashboard</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <!-- Column -->
+            <a class="col-md-6 col-lg-3" href="@Url.Action("Index", "Dashboard")">
+                <div class="card card-hover">
+                    <div class="box bg-cyan text-center">
+                        <h1 class="font-light text-white"><i class="fas fa-users"></i></h1>
+                        <h6 class="text-white">Staff</h6>
+                    </div>
+                </div>
+            </a>
+            <!-- Column -->
+            <a class="col-md-6 col-lg-3" href="@Url.Action("Student", "Dashboard")">
+                <div class="card card-hover">
+                    <div class="box bg-success text-center">
+                        <h1 class="font-light text-white"><i class="fas fa-user-graduate"></i></h1>
+                        <h6 class="text-white">Student</h6>
+                    </div>
+                </div>
+            </a>
+
+
+            <!-- Column -->
+            <a class="col-md-6 col-lg-3" href="@Url.Action("Subject", "Dashboard")">
+                <div class="card card-hover">
+                    <div class="box bg-warning text-center">
+                        <h1 class="font-light text-white"><i class="fas fa-book"></i></h1>
+                        <h6 class="text-white">Subject</h6>
+                    </div>
+                </div>
+            </a>
+            <!-- Column -->
+            <a class="col-md-6 col-lg-3" href="@Url.Action("Class", "Dashboard")">
+                <div class="card card-hover">
+                    <div class="box bg-danger text-center">
+                        <h1 class="font-light text-white"><i class="fas fa-level-up-alt"></i></h1>
+                        <h6 class="text-white">Class</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="row">
+
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title m-b-0"><i class="fas fa-users"></i> Student</h5>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <a href="@Url.Action("Student", "Student")" class="btn btn btn-dark">
+                                            <i class="fas fa-plus-square"></i>
+                                            <span>
+                                                <strong>Create</strong>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            @using (Html.BeginForm("Student", "Dashboard", FormMethod.Post))
+                            {
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Student</label>
+                                            @Html.TextBox("searchtxt", null, new { @class = "form-control", @placeholder = "Search Student" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn btn-dark">
+                                                <i class="fas fa-search"></i>  Search Student
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>
+                                                AdmissionNo
+                                            </th>
+                                            <th>
+                                                StudentName
+                                            </th>
+                                            <th>
+                                                Gender
+                                            </th>
+                                            <th>
+                                                Session Name
+                                            </th>
+                                            <th>
+                                                Class Level
+                                            </th>
+											<th>
+												Date Time
+											</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int counter = 1;
+                                        }
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>@counter</td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.AdmissionNo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.StudentName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Gender)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SessionName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ClassLevel)
+                                            </td>
+											<td>
+												@Html.DisplayFor(modelItem => item.DateTime)
+											</td>
+                                        </tr>
+                                            counter++;
+                                        }
+                                        </tbody>
+
+                                </table>
+
+
+
+                            @{
+                                double totalPages = ViewBag.TotalPages;
+
+                                <ul class="pagination">
+                                    @if (ViewBag.PageNumber == 1)
+                                    {
+                                        <li class="active" style="float:left">
+                                            @Html.ActionLink("Previous", "Student", new { PageNumber = ViewBag.PageNumber })
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="active" style="float:left">
+                                            @Html.ActionLink("Previous", "Student", new { PageNumber = ViewBag.PageNumber - 1 })
+                                        </li>
+                                    }
+                                    @for (int i = 1; i <= totalPages; i++)
+                                    {
+                                        if (i == ViewBag.PageNumber)
+                                        {
+                                            <li class="active" style="float:left">
+                                                @Html.ActionLink(i.ToString(), "Student", new { PageNumber = i })
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="active" style="float:left">
+                                                @Html.ActionLink(i.ToString(), "Student", new { PageNumber = i })
+                                            </li>
+                                        }
+                                    }
+                                    @if (ViewBag.PageNumber == totalPages)
+                                    {
+                                        <li class="active" style="float:left">
+                                            @Html.ActionLink("Next", "Student", new { PageNumber = ViewBag.PageNumber })
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="active" style="float:left">
+                                            @Html.ActionLink("Next", "Student", new { PageNumber = ViewBag.PageNumber + 1 })
+                                        </li>
+                                    }
+                                </ul>
+                            }
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+

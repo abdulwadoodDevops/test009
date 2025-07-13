@@ -1,0 +1,150 @@
+﻿@model SchoolErp.Models.Admin.StaffFinance
+
+@{
+    Layout = null;
+}
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+<title>Generate Payroll Slip</title>
+<!-- Custom CSS -->
+<link href="~/assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
+<link href="~/assets/extra-libs/calendar/calendar.css" rel="stylesheet" />
+<link href="~/dist/css/style.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+
+
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body printableArea">
+                <form name="GeneratePayrollSLip" method="post">
+                    <h3><b>Payroll</b> <span class="pull-right"></span></h3>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-left">
+								<h3> <b class="text-danger">JAIN Online Admissions Office</b></h3>
+                                <address>
+                                    
+                                    <p class="text-muted m-l-5">
+                                        44/4, District Fund Road
+                                        <br /> behind Big Bazaar
+                                        <br /> Jayanagara 9th Block, Bengaluru
+                                        <br /> Karnataka - 560069
+                                    </p>
+                                </address>
+							<hr>
+                            </div>
+                            <div class="pull-right text-right">
+								<h3>To,</h3>
+                                
+                                    
+                                    <h4 class="font-bold">@Html.DisplayFor(model => model.StaffName)</h4>
+
+                               
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="table-responsive m-t-40" style="clear: both;">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th>Description</th>
+                                            <th class="text-right">Amount</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td>Basic Salary</td>
+                                            <td class="text-right">$@Html.DisplayFor(model => model.BasicSalary)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">2</td>
+                                            <td>House Allowance</td>
+                                            <td class="text-right"> $@Html.DisplayFor(model => model.HouseAllowance)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">3</td>
+                                            <td>Transport Allowance</td>
+                                            <td class="text-right"> $@Html.DisplayFor(model => model.TransportAllowance) </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">4</td>
+                                            <td>Tax</td>
+                                            <td class="text-right"> $@Html.DisplayFor(model => model.Tax) </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center">5</td>
+                                            <td>Vat</td>
+                                            <td class="text-right">$@Html.DisplayFor(model => model.Vat) </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        @Html.HiddenFor(model => model.staffID)
+                        <div class="col-md-12">
+                            <div class="pull-right m-t-30 text-right">
+                                <hr>
+                                <h3><b>Total Pay :</b> $@Html.DisplayFor(model => model.TotalPay) </h3>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                            <div class="text-right">
+                                <div class="text-right">
+                                    <div>
+                                        <h3><b>@Html.ActionLink("Back to List", "StaffFinance")</b></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End PAge Content -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Right sidebar -->
+<!-- ============================================================== -->
+<!-- .right-sidebar -->
+<!-- ============================================================== -->
+<!-- End Right sidebar -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- footer -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- End footer -->
+<!-- ==============================================================-->
+</div>
+

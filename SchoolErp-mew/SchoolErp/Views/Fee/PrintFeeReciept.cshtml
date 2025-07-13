@@ -1,0 +1,124 @@
+﻿@model SchoolErp.Models.Admin.CollectFee
+
+@{
+    Layout = null;
+}
+
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+<title>Print Fee Reciept</title>
+<!-- Custom CSS -->
+<link href="~/assets/libs/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet" />
+<link href="~/assets/extra-libs/calendar/calendar.css" rel="stylesheet" />
+<link href="~/dist/css/style.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+
+<div class="container-fluid">
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body printableArea">
+                <form name="GeneratePayrollSLip" method="post">
+                    <h3><b>Reciept</b> <span class="pull-right"></span></h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-left">
+                                <address>
+                                    <h3> &nbsp;<b class="text-danger">JAIN Online Admissions Office</b></h3>
+                                    <p class="text-muted m-l-5">
+                                        44/4, District Fund Road
+                                        <br /> behind Big Bazaar
+                                        <br /> Jayanagara 9th Block, Bengaluru
+                                        <br /> Karnataka - 560069
+                                    </p>
+                                </address>
+                            </div>
+                            <div class="pull-right text-right">
+                                <address>                                    
+                                    <h3>To,</h3>
+                                    <h4 class="font-bold">@Html.DisplayFor(model => model.StudentName)</h4>
+                                    <h4 class="font-bold">Session:@Html.DisplayFor(model => model.Session)</h4>
+                                    <h4 class="font-bold">Teller Number:@Html.DisplayFor(model => model.TellerNo)</h4>
+                                    <h4 class="font-bold">Level:@Html.DisplayFor(model => model.ClassLevelname)</h4>
+                                </address>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="table-responsive m-t-40" style="clear: both;">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th>Description</th>
+                                            <th class="text-right">Amount</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td>School Fee</td>
+                                            <td class="text-right">$@Html.DisplayFor(model => model.Amount)</td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12">
+                            <div class="pull-right m-t-30 text-right">
+                                <hr>
+                                <h3><b>Total Pay :</b> $@Html.DisplayFor(model => model.Amount) </h3>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                            <div class="text-right">
+                                <div class="text-right">
+                                    <h3><b>@Html.ActionLink("Back to List", "CollectedFee")</b></h3>
+                                </div>
+                            </div>
+                        </div>                        
+                     </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    
+
+<script src="~/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="~/dist/js/jquery.ui.touch-punch-improved.js"></script>
+<script src="~/dist/js/jquery-ui.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="~/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="~/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="~/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="~/assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="~/dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="~/dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="~/dist/js/custom.min.js"></script>
+<!-- this page js -->
+<script src="~/assets/libs/moment/min/moment.min.js"></script>
+<script src="~/assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="~/dist/js/pages/calendar/cal-init.js"></script>
